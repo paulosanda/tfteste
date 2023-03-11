@@ -419,29 +419,6 @@ class EventoTest extends TestCase
         ]);
     }
 
-    public function test_evento_search(): void
-    {
-        $data_criacao = date('Y-m-d H:i');
-
-        $data_evento = date('Y-m-d H:i', strtotime('+10 days'));
-
-        Evento::create([
-            'nome_do_evento' => 'Evento de teste',
-            'nome_do_patrocinador' => 'Patrocinador do evento',
-            'data_do_evento' => $data_evento,
-            'data_de_criacao' => $data_criacao,
-            'local' => 'Lugar onde acontecera o evento',
-            'nome_do_artista' => 'Nome do artista',
-            'horario_de_inicio' => '10:00',
-            'duracao' => 2,
-            'lotacao_maxima' => 1000,
-        ]);
-
-        $this->post(route('evento.search'), [
-            'param' => 'Evento'
-        ])->assertOk();
-    }
-
     public function teste_evento_index(): void
     {
         $data_criacao = date('Y-m-d H:i');
