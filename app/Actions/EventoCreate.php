@@ -3,39 +3,41 @@
 namespace App\Actions;
 
 use App\Models\Evento;
+use Illuminate\Http\Request;
 
 class EventoCreate extends BaseAction
 {
-    public function execute(array $data)
+
+    public function rules()
     {
-        $rules = [
-            'nome_do_evento' => 'required',
-            'nome_do_patrocinador',
-            'data_do_evento',
-            'data_de_criacao',
-            'local',
-            'nome_do_artista',
-            'horario_de_inicio',
-            'duracao',
-            'lotacao_maxima',
+        return [
+            'nome_do_evento' => 'required|string|min:5|max:30',
+            'nome_do_patrocinador' => 'required|string|min:5|max:30',
+            'data_do_evento' => 'required|date|after_or_equal:data_de_criacao',
+            'data_de_criacao' => 'required|date',
+            'local' => 'required',
+            'nome_do_artista' => 'required|string|min:5|max:30',
+            'horario_de_inicio' => 'required|date_format:H:i',
+            'duracao' => 'required|integer|max:5',
+            'lotacao_maxima' => 'required|integer',
         ];
+    }
 
-        $messages = [
-            'name.required' => 'O nome é obrigatório.',
-            'email.required' => 'O e-mail é obrigatório.',
-            'email.email' => 'O e-mail deve ser um endereço de e-mail válido.',
-            'email.unique' => 'Este endereço de e-mail já está em uso.',
-            'password.required' => 'A senha é obrigatória.',
-            'password.min' => 'A senha deve ter pelo menos :min caracteres.',
-            'password.confirmed' => 'As senhas não correspondem.',
-        ];
-
-        $this->validate($data, $rules, $messages);
+    public function execute(Request $request)
+    {
+        // dd($request);
+        $this->validate($request);
 
         return Evento::create([
-            'name' => $data['name'],
-            'email' => $data['email'],
-            'password' => bcrypt($data['password']),
+            'nome_do_evento' => $request['nome_do_evento'],
+            'nome_do_patrocinador' => $request['nome_do_patrocinador'],
+            'data_do_evento' => $request['data_do_evento'],
+            'data_de_criacao' => $request['data_de_criacao'],
+            'local' => $request['local'],
+            'nome_do_artista' => $request['nome_do_artista'],
+            'horario_de_inicio' => $request['horario_de_inicio'],
+            'duracao' => $request['duracao'],
+            'lotacao_maxima' => $request['lotacao_maxima'],
         ]);
     }
 }

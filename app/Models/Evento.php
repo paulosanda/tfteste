@@ -20,4 +20,6 @@ class Evento extends Model
         'duracao',
         'lotacao_maxima',
     ];
+
+    protected $guarded = ['nome_do_evento', 'data_criacao'];
 }
