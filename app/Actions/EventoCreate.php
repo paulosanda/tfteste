@@ -25,7 +25,6 @@ class EventoCreate extends BaseAction
 
     public function execute(Request $request)
     {
-        // dd($request);
         $this->validate($request);
 
         return Evento::create([

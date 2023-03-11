@@ -1,0 +1,343 @@
+{
+    "openapi": "3.0.0",
+    "info": {
+        "title": "API Eventos - Teste Trocafone",
+        "description": "API de Gestão de Eventos",
+        "contact": {
+            "name": "Paulo Sanda",
+            "email": "paulosanda@gmail.com"
+        },
+        "version": "1.0.0"
+    },
+    "paths": {
+        "/api/evento": {
+            "get": {
+                "tags": [
+                    "Evento"
+                ],
+                "summary": "Obter todos os eventos",
+                "responses": {
+                    "200": {
+                        "description": "Retorna uma lista de eventos",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "type": "array",
+                                    "items": {
+                                        "$ref": "#/components/schemas/Evento"
+                                    }
+                                }
+                            }
+                        }
+                    },
+                    "500": {
+                        "description": "Erro interno do servidor",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "properties": {
+                                        "error": {
+                                            "type": "string",
+                                            "example": "Erro ao processar a solicitação."
+                                        }
+                                    },
+                                    "type": "object"
+                                }
+                            }
+                        }
+                    }
+                }
+            },
+            "post": {
+                "tags": [
+                    "Evento"
+                ],
+                "summary": "Criar um novo evento",
+                "operationId": "90f3f2eb87e1117687b4e73e3d4f1eeb",
+                "requestBody": {
+                    "description": "Dados do evento",
+                    "required": true,
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "$ref": "#/components/schemas/Evento"
+                            }
+                        }
+                    }
+                },
+                "responses": {
+                    "200": {
+                        "description": "Evento criado com sucesso",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/Evento"
+                                }
+                            }
+                        }
+                    },
+                    "400": {
+                        "description": "Erro na validação dos dados",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "properties": {
+                                        "error": {
+                                            "type": "string",
+                                            "example": "Erro ao validar os dados."
+                                        }
+                                    },
+                                    "type": "object"
+                                }
+                            }
+                        }
+                    },
+                    "500": {
+                        "description": "Erro interno do servidor",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "properties": {
+                                        "error": {
+                                            "type": "string",
+                                            "example": "Erro ao processar a solicitação."
+                                        }
+                                    },
+                                    "type": "object"
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        },
+        "/api/evento/{id}": {
+            "get": {
+                "tags": [
+                    "Evento"
+                ],
+                "summary": "Mostrar detalhes do evento",
+                "description": "Retorna os detalhes do evento especificado pelo ID",
+                "operationId": "evento.show",
+                "parameters": [
+                    {
+                        "name": "id",
+                        "in": "path",
+                        "description": "ID do evento",
+                        "required": true,
+                        "schema": {
+                            "type": "integer"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Detalhes do evento",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/Evento"
+                                }
+                            }
+                        }
+                    },
+                    "404": {
+                        "description": "Evento não encontrado"
+                    }
+                }
+            },
+            "put": {
+                "tags": [
+                    "Evento"
+                ],
+                "summary": "Atualizar um evento",
+                "description": "Atualiza um evento especificado pelo ID",
+                "operationId": "evento.update",
+                "parameters": [
+                    {
+                        "name": "id",
+                        "in": "path",
+                        "description": "ID do evento",
+                        "required": true,
+                        "schema": {
+                            "type": "integer"
+                        }
+                    }
+                ],
+                "requestBody": {
+                    "description": "Informações do evento",
+                    "required": true,
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "$ref": "#/components/schemas/EventoRequest"
+                            }
+                        }
+                    }
+                },
+                "responses": {
+                    "200": {
+                        "description": "Evento atualizado",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/Evento"
+                                }
+                            }
+                        }
+                    },
+                    "404": {
+                        "description": "Evento não encontrado"
+                    }
+                }
+            },
+            "delete": {
+                "tags": [
+                    "Evento"
+                ],
+                "summary": "Deletar um evento",
+                "description": "Deleta um evento pelo seu ID.",
+                "operationId": "deleteEvento",
+                "parameters": [
+                    {
+                        "name": "id",
+                        "in": "path",
+                        "description": "ID do evento a ser deletado",
+                        "required": true,
+                        "schema": {
+                            "type": "integer"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Evento deletado com sucesso."
+                    },
+                    "404": {
+                        "description": "Evento não encontrado."
+                    }
+                }
+            }
+        }
+    },
+    "components": {
+        "schemas": {
+            "Evento": {
+                "title": "Evento",
+                "description": "Modelo de evento",
+                "properties": {
+                    "nome_do_evento": {
+                        "description": "Nome do evento",
+                        "type": "string",
+                        "example": "Festa de Aniversário"
+                    },
+                    "nome_do_patrocinador": {
+                        "description": "Nome do patrocinador do evento",
+                        "type": "string",
+                        "example": "Empresa XYZ"
+                    },
+                    "data_do_evento": {
+                        "description": "Data do evento",
+                        "type": "string",
+                        "format": "date",
+                        "example": "2023-04-22"
+                    },
+                    "data_de_criacao": {
+                        "description": "Data de criação do evento",
+                        "type": "string",
+                        "format": "date-time",
+                        "example": "2023-03-11 12:34:56"
+                    },
+                    "nome_do_artista": {
+                        "description": "Nome do artista",
+                        "type": "string",
+                        "example": "Caetano"
+                    },
+                    "horario_de_inicio": {
+                        "description": "Horario de Inicio",
+                        "type": "string",
+                        "format": "datetime",
+                        "example": "10:00"
+                    },
+                    "local": {
+                        "description": "Local do evento",
+                        "type": "string",
+                        "example": "Salão de festas"
+                    },
+                    "duracao": {
+                        "description": "Duracao do evento",
+                        "type": "integer",
+                        "example": "3"
+                    },
+                    "lotacao_maxima": {
+                        "description": "Lotação máxima para o evento",
+                        "type": "integer",
+                        "example": "1000"
+                    }
+                },
+                "type": "object",
+                "xml": {
+                    "name": "Evento"
+                }
+            },
+            "EventoRequest": {
+                "title": "EventoRequest",
+                "description": "Modelo de evento",
+                "properties": {
+                    "nome_do_evento": {
+                        "description": "Nome do evento",
+                        "type": "string",
+                        "example": "Festa de Aniversário"
+                    },
+                    "nome_do_patrocinador": {
+                        "description": "Nome do patrocinador do evento",
+                        "type": "string",
+                        "example": "Empresa XYZ"
+                    },
+                    "data_do_evento": {
+                        "description": "Data do evento",
+                        "type": "string",
+                        "format": "date",
+                        "example": "2023-04-22"
+                    },
+                    "data_de_criacao": {
+                        "description": "Data de criação do evento",
+                        "type": "string",
+                        "format": "date-time",
+                        "example": "2023-03-11"
+                    },
+                    "nome_do_artista": {
+                        "description": "Nome do artista",
+                        "type": "string",
+                        "example": "Caetano"
+                    },
+                    "horario_de_inicio": {
+                        "description": "Horario de Inicio",
+                        "type": "string",
+                        "format": "datetime",
+                        "example": "10:00"
+                    },
+                    "local": {
+                        "description": "Local do evento",
+                        "type": "string",
+                        "example": "Salão de festas"
+                    },
+                    "duracao": {
+                        "description": "Duracao do evento",
+                        "type": "integer",
+                        "example": "3"
+                    },
+                    "lotacao_maxima": {
+                        "description": "Lotação máxima para o evento",
+                        "type": "integer",
+                        "example": "1000"
+                    }
+                },
+                "type": "object",
+                "xml": {
+                    "name": "EventoRequest"
+                }
+            }
+        }
+    }
+}
