@@ -187,8 +187,6 @@ class EventoTest extends TestCase
     {
         $data_criacao = date('Y-m-d H:i');
 
-        $data_evento = date('Y-m-d H:i', strtotime('+10 days'));
-
         $response = $this->post(route('evento.add'), [
             'nome_do_evento' => 'Evento',
             'nome_do_patrocinador' => 'Nome do patrocinador',
@@ -232,8 +230,6 @@ class EventoTest extends TestCase
 
     public function test_create_evento_error_data_de_criacao_void(): void
     {
-        $data_criacao = date('Y-m-d H:i');
-
         $data_evento = date('Y-m-d H:i', strtotime('+10 days'));
 
         $response = $this->post(route('evento.add'), [
@@ -255,8 +251,6 @@ class EventoTest extends TestCase
 
     public function test_create_evento_error_data_de_criacao_string(): void
     {
-        $data_criacao = date('Y-m-d H:i');
-
         $data_evento = date('Y-m-d H:i', strtotime('+10 days'));
 
         $response = $this->post(route('evento.add'), [
@@ -336,7 +330,6 @@ class EventoTest extends TestCase
             'data_de_criacao' => $data_criacao,
             'local' => 'Lugar onde acontecera o evento',
             'nome_do_artista' => 'Nome do artista',
-            //'horario_de_inicio' => '10:00',
             'duracao' => 2,
             'lotacao_maxima' => 1000,
         ]);
@@ -410,7 +403,6 @@ class EventoTest extends TestCase
             'nome_do_artista' => 'Nome do artista',
             'horario_de_inicio' => '05:00',
             'duracao' => 3,
-            //'lotacao_maxima' => 1000,
         ]);
 
         $response->assertStatus(422);

@@ -4,6 +4,7 @@ namespace App\Actions;
 
 use App\Models\Evento;
 use Illuminate\Http\Request;
+use Illuminate\Support\Arr;
 
 class EventoUpdate extends BaseAction
 {
@@ -26,8 +27,18 @@ class EventoUpdate extends BaseAction
         $this->validate($request);
 
         $evento = Evento::findOrFail($id);
-        if ($request->data_do_evento >= $evento->data_de_criacao) {
-            $data = $request->except(['nome_do_evento', 'data_de_criacao']);
+
+        $sanitizedData = [];
+        foreach ($request->all() as $key => $value) {
+            if (is_string($value)) {
+                $sanitizedData[$key] = trim(strip_tags($value));
+            } else {
+                $sanitizedData[$key] = $value;
+            }
+        }
+
+        if ($sanitizedData['data_do_evento'] >= $evento->data_de_criacao) {
+            $data = Arr::except($sanitizedData, ['nome_do_evento', 'data_de_criacao']);
             $evento->fill($data);
             $evento->save();
 

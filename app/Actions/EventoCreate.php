@@ -27,16 +27,15 @@ class EventoCreate extends BaseAction
     {
         $this->validate($request);
 
-        return Evento::create([
-            'nome_do_evento' => $request['nome_do_evento'],
-            'nome_do_patrocinador' => $request['nome_do_patrocinador'],
-            'data_do_evento' => $request['data_do_evento'],
-            'data_de_criacao' => $request['data_de_criacao'],
-            'local' => $request['local'],
-            'nome_do_artista' => $request['nome_do_artista'],
-            'horario_de_inicio' => $request['horario_de_inicio'],
-            'duracao' => $request['duracao'],
-            'lotacao_maxima' => $request['lotacao_maxima'],
-        ]);
+        $sanitizedData = [];
+        foreach ($request->all() as $key => $value) {
+            if (is_string($value)) {
+                $sanitizedData[$key] = trim(strip_tags($value));
+            } else {
+                $sanitizedData[$key] = $value;
+            }
+        }
+
+        return Evento::create($sanitizedData);
     }
 }
