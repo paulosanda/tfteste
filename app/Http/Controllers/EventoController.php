@@ -5,7 +5,6 @@ namespace App\Http\Controllers;
 use App\Actions\EventoCreate;
 use Illuminate\Http\JsonResponse;
 use Illuminate\Http\Request;
-use App\Actions\EventoSearch;
 use App\Models\Evento;
 use App\Actions\EventoUpdate;
 
