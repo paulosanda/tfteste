@@ -4,9 +4,11 @@ namespace App\Actions;
 
 use App\Models\Evento;
 use Illuminate\Http\Request;
+use App\Traits\SanitizeTrait;
 
 class EventoCreate extends BaseAction
 {
+    use SanitizeTrait;
 
     public function rules()
     {
@@ -27,15 +29,8 @@ class EventoCreate extends BaseAction
     {
         $this->validate($request);
 
-        $sanitizedData = [];
-        foreach ($request->all() as $key => $value) {
-            if (is_string($value)) {
-                $sanitizedData[$key] = trim(strip_tags($value));
-            } else {
-                $sanitizedData[$key] = $value;
-            }
-        }
+        $data = $this->sanitizeData($request->all());
 
-        return Evento::create($sanitizedData);
+        return Evento::create($data);
     }
 }
