@@ -6,8 +6,7 @@ Este projeto é uma API REST para a gestão de eventos de uma agência de shows.
 
 Para instalar e executar a aplicação, siga os passos abaixo:
 
-Clone o repositório
-
+-   Clone o repositório
 -   Abra o terminal e navegue até o diretório do projeto clonado
 -   Execute o comando docker-compose up -d para construir e iniciar o ambiente docker
 -   Execute o comando cp .env.example .env para criar o arquivo .env baseado no arquivo .env.example
@@ -15,7 +14,7 @@ Clone o repositório
 -   Execute o comando docker exec -it tfteste_app bash para acessar o container da aplicação
 -   Execute o comando composer install para instalar as dependências do projeto
 -   Execute o comando php artisan key:generate para criar a chave do projeto
--   Execute o comando php artisan migrate:fresh --seed para criar as tabelas e popular o banco de dados com dados de exemplo
+-   Execute o comando php artisan migrate
 -   Acesse a documentação da API através do link http://localhost:8000/api/documentation
 
 </ul>
