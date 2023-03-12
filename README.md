@@ -24,5 +24,5 @@ Clone o repositório
 
 Para executar os testes da aplicação, siga os passos abaixo:
 
-1. Acesse o container da aplicação utilizando o comando `docker exec -it tfteste_app bash`
+1. Acesse o container da aplicação utilizando o comando `docker exec -it tfteste_app_1 bash` ou ainda verifique o ID do container usando `docker ps` e utilize o ID para o docker exec.
 2. Execute o comando `php artisan test`
