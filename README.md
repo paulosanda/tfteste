@@ -6,10 +6,6 @@ Este projeto é uma API REST para a gestão de eventos de uma agência de shows.
 
 Para instalar e executar a aplicação, siga os passos abaixo:
 
-Você está certo, o arquivo .env é importante para configurar as variáveis de ambiente e outras configurações da aplicação. Portanto, aqui está a versão atualizada das instruções com o passo para copiar o arquivo .env.example para .env:
-
-Para instalar e executar a aplicação, siga os passos abaixo:
-
 Clone o repositório
 
 -   Abra o terminal e navegue até o diretório do projeto clonado
