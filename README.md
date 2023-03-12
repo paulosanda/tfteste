@@ -1,79 +1,32 @@
+# API de gestão de eventos para agência de shows
 
-# Setup Docker Para Projetos Laravel (8, 9 ou 10)
-[Assine a Academy, e Seja VIP!](https://academy.especializati.com.br)
+Este projeto é uma API REST para a gestão de eventos de uma agência de shows. Ele permite criar, buscar, editar e excluir eventos, além de validar os dados de entrada de acordo com os requisitos de negócio definidos.
 
-### Passo a passo
-Clone Repositório
-```sh
-git clone https://github.com/especializati/setup-docker-laravel.git
-```
+## Instalação
 
-Clone os Arquivos do Laravel
-```sh
-git clone https://github.com/laravel/laravel.git app-laravel
-```
+Para instalar e executar a aplicação, siga os passos abaixo:
 
+Você está certo, o arquivo .env é importante para configurar as variáveis de ambiente e outras configurações da aplicação. Portanto, aqui está a versão atualizada das instruções com o passo para copiar o arquivo .env.example para .env:
 
-Copie os arquivos docker-compose.yml, Dockerfile e o diretório docker/ para o seu projeto
-```sh
-cp -rf setup-docker-laravel/* app-laravel/
-```
-```sh
-cd app-laravel/
-```
+Para instalar e executar a aplicação, siga os passos abaixo:
 
+Clone o repositório
 
-Crie o Arquivo .env
-```sh
-cp .env.example .env
-```
+-   Abra o terminal e navegue até o diretório do projeto clonado
+-   Execute o comando docker-compose up -d para construir e iniciar o ambiente docker
+-   Execute o comando cp .env.example .env para criar o arquivo .env baseado no arquivo .env.example
+-   Acesse a aplicação através do link http://localhost:8000
+-   Execute o comando docker exec -it tfteste_app bash para acessar o container da aplicação
+-   Execute o comando composer install para instalar as dependências do projeto
+-   Execute o comando php artisan key:generate para criar a chave do projeto
+-   Execute o comando php artisan migrate:fresh --seed para criar as tabelas e popular o banco de dados com dados de exemplo
+-   Acesse a documentação da API através do link http://localhost:8000/api/documentation
 
+</ul>
 
-Atualize as variáveis de ambiente do arquivo .env
-```dosini
-APP_NAME="Especializa Ti"
-APP_URL=http://localhost:8989
+## Executando os testes
 
-DB_CONNECTION=mysql
-DB_HOST=db
-DB_PORT=3306
-DB_DATABASE=laravel
-DB_USERNAME=root
-DB_PASSWORD=root
+Para executar os testes da aplicação, siga os passos abaixo:
 
-CACHE_DRIVER=redis
-QUEUE_CONNECTION=redis
-SESSION_DRIVER=redis
-
-REDIS_HOST=redis
-REDIS_PASSWORD=null
-REDIS_PORT=6379
-```
-
-
-Suba os containers do projeto
-```sh
-docker-compose up -d
-```
-
-
-Acessar o container
-```sh
-docker-compose exec app bash
-```
-
-
-Instalar as dependências do projeto
-```sh
-composer install
-```
-
-
-Gerar a key do projeto Laravel
-```sh
-php artisan key:generate
-```
-
-
-Acessar o projeto
-[http://localhost:8989](http://localhost:8989)
+1. Acesse o container da aplicação utilizando o comando `docker exec -it tfteste_app bash`
+2. Execute o comando `php artisan test`
