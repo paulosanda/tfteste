@@ -28,13 +28,8 @@ use App\Actions\EventoUpdate;
  * )
  */
 
-
-
-
 class EventoController extends Controller
 {
-
-
     public function index(): JsonResponse
     {
         $response = Evento::all();
